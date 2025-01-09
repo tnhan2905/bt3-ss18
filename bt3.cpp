@@ -1,16 +1,35 @@
 #include <stdio.h>
+#include <string.h>
 
-void tong(int *a,int *b,int *sum){
-	*sum = *a + *b;
-}
+struct sinhVien{
+	char name[100];
+	int age;
+	char phoneNum[100];
+};
 
-void inTong(int *sum){
-	printf("Tong cua X + Y = %d",*sum);
-}
+typedef struct sinhVien sinhVien;
 
-int main (){
-	int a=55,b=90;
-	int sum;
-	tong (&a,&b,&sum);
-	inTong(&sum);
+int main(){
+	sinhVien arr[5];
+	for(int i=0;i<5;i++){
+		printf("Nhap vao ten sinh vien thu %d: ",i+1);
+		fgets(arr[i].name,100,stdin);
+		arr[i].name[strcspn(arr[i].name,"\n")]='\0';
+		
+		printf("Nhap vao tuoi sinh vien thu %d: ",i+1);
+		scanf("%d",&arr[i].age);
+		while(getchar() != '\n');
+		
+		printf("Nhap vao sdt sinh vien thu %d: ",i+1);
+		fgets(arr[i].phoneNum,100,stdin);
+		arr[i].name[strcspn(arr[i].name,"\n")]='\0';
+	}
+	printf("\n\n");
+	printf("Day la thong tin cac sinh vien vua nhap:\n");
+	for(int i=0;i<5;i++){
+		printf("\n");
+		printf("Ten: %s\n",arr[i].name);
+		printf("Tuoi: %d\n",arr[i].age);
+		printf("Sdt: %s\n",arr[i].phoneNum);
+	}
 }
